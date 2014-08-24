@@ -47,12 +47,11 @@ cacheSolve <- function(x, ...) {
     return(s)
   }
   
-  # If the cached inverse does not exist, computes the inverse of the 
-  # special "matrix", and caches the value of inverse of the matrix
+  # If the cached inverse does not exist, compute the inverse of the 
+  # special "matrix", then cache the value of inverse of the matrix,
+  # finally return the computed inverse
   data <- x$get()
   s <- solve(data, ...)
   x$setsolve(s)
-  
-  # Return the computed inverse
   s
 }
