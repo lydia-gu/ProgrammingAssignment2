@@ -38,13 +38,21 @@ makeCacheMatrix <- function(x = matrix()) {
 #' @param x a "list" object (in this case it's the list returned by makeCacheMatrix)
 #' @return a "matrix" object, which is the inverse of the special matrix supplied
 cacheSolve <- function(x, ...) {
+  # Retrieve the inverse from the cache
   s <- x$getsolve()
+  
+  # If the cached inverse exists, return the cached inverse
   if(!is.null(s)){
     message("getting cached inverse of matrix")
     return(s)
   }
+  
+  # If the cached inverse does not exist, computes the inverse of the 
+  # special "matrix", and caches the value of inverse of the matrix
   data <- x$get()
   s <- solve(data, ...)
   x$setsolve(s)
+  
+  # Return the computed inverse
   s
 }
